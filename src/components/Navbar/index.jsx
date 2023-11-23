@@ -1,13 +1,28 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import './style.css'
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
+    const navigate = useNavigate();
+    const accessToken = localStorage.getItem("accessToken")
+
+    const handleLogout = () => {
+        localStorage.removeItem("accessToken")
+        navigate("/login")
+    }
+
     return ( 
             <div className="container">
                 <ul className='nav-link-wrapper'>
-                    <li><Link className='nav-link' to={`/`}>Home</Link></li>
-                    <li><Link className='nav-link' to={`/login`}>Login</Link></li>
+                    <Link className='nav-link' to={"/"}>Home</Link>
+                    {accessToken ? (
+                        <p className='nav-link' onClick={handleLogout}>Logout</p>
+                    ) : (
+                    <Link className='nav-link' to={"/login"}>
+                        <p>Login</p>
+                    </Link>
+                    )}
                 </ul>
             </div>
     );

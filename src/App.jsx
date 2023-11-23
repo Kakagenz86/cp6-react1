@@ -5,7 +5,6 @@ import DetailPages from "./pages/detail";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
-
   return (
     <div>
       <BrowserRouter>
