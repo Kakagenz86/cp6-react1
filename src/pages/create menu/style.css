@@ -1,0 +1,33 @@
+.create-menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 93vh;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.create-title {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 50px;
+    text-shadow: 0px 5px 0px rgb(0, 255, 13);
+}
+
+.create-input {
+    width: 300px;
+    padding: 5px;
+    height: 30px;
+    border-radius: 5px;
+    color: black;
+}
+
+.create-btn {
+    width: 120px;
+    border-radius: 10px;
+    background-color: lightgreen;
+    box-shadow: 5px 5px rgba(0, 0, 0, 1);
+    font-weight: 700;
+    font-family: Arial, Helvetica, sans-serif;
+    cursor: pointer;
+    height: 30px;
+}

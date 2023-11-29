@@ -6,7 +6,9 @@
 .container {
     display: flex;
     justify-content: center;
+    align-items: center;
     height: 50px;
+    background-color: lightgreen;
 }
 
 .nav-link-wrapper {
@@ -20,4 +22,5 @@
     font-weight: 400;
     text-decoration: none;
     cursor: pointer;
+    font-weight: 700;
 }

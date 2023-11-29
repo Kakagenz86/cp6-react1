@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import Navbar from '../../components/Navbar';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import './style.css'
 
 const FormLogin = () => {
     const [name, setUsername] = useState ('')
@@ -58,18 +59,18 @@ const FormLogin = () => {
     return ( 
         <div>
             <Navbar/>
-            {login.length ? (<h1>{login}</h1>) : null}
-            <div>
-                <label>Username: </label>
-                <input onChange={handleUsername} type="text" />
+            <div className="loginpages">
+                {login.length ? (<h1>{login}</h1>) : null}
+                <div>
+                    <label>Username: </label>
+                    <input onChange={handleUsername} type="text" />
+                </div>
+                <div>
+                    <label>Password: </label>
+                    <input onChange={handlePassword} type="text" name="" id="" />
+                </div>
+                <Link className='btn-login' onClick={handleSubmit} disabled={loading}>{loading ? 'Loading...' : 'Submit'}</Link>
             </div>
-            <div>
-                <label>Password: </label>
-                <input onChange={handlePassword} type="text" name="" id="" />
-            </div>
-            <button onClick={handleSubmit} disabled={loading}>
-                {loading ? 'Loading...' : 'Submit'}
-            </button>
         </div>
     );
 }

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Navbar from '../../components/Navbar';
 import axios from 'axios';
+import './style.css'
+import { useNavigate } from 'react-router-dom';
 
 const CreateMenu = () => {
     const [formData, setFormData] = useState({
@@ -10,6 +12,8 @@ const CreateMenu = () => {
         imageUrl: "",
         price: "",
     });
+    const navigate = useNavigate()
+    const [loading, setLoading] = useState(false)
 
     const handleInputChange = (e) => {
         // console.log(e.target.value)
@@ -35,32 +39,38 @@ const CreateMenu = () => {
             }
         }
 
+        setLoading(true)
+
         axios
             .post('https://api.mudoapi.tech/menu',  formData, config)
             .then((res) => {
                 console.log(res);
+                navigate('/')
+                setLoading(false)
+                alert('Menu Berhasil Dibuat')
             })
             .catch((err) => {
                 console.log(err.response);
+                setLoading(false)
             });
     };
 
     return (
         <div>
             <Navbar />
-            <h1>Create Menu</h1>
             <div className='create-menu'>
-                <input name='name' placeholder='name' onChange={handleInputChange}/>
-                <input name='description' placeholder='description' onChange={handleInputChange}/>
-                <select name='type' onChange={handleInputChange}>
+            <h1 className='create-title'>Create Menu</h1>
+                <input className='create-input' name='name' placeholder='name' onChange={handleInputChange}/>
+                <input className='create-input' name='description' placeholder='description' onChange={handleInputChange}/>
+                <input className='create-input' name='imageUrl' placeholder='image url' onChange={handleInputChange}
+                />
+                <input className='create-input' name='price' placeholder='harga' onChange={handleInputChange}/>
+                <select className='create-input' name='type' onChange={handleInputChange}>
                     <option value={'beverage'}>beverage</option>
                     <option value={'main-dish'}>main-dish</option>
                 </select>
-                <input name='imageUrl' placeholder='image url' onChange={handleInputChange}
-                />
-                <input name='price' placeholder='harga' onChange={handleInputChange}/>
                 <div>
-                    <button onClick={handleSubmit}>Submit</button>
+                    <button className='create-btn' onClick={handleSubmit} disabled={loading}>{loading ? 'Loading...' : 'Create'}</button>
                 </div>
             </div>
         </div>
