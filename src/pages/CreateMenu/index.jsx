@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Navbar from '../../components/Navbar';
-import axios from 'axios';
+import * as requestAPI from '../../api/api'
 import './style.css'
 import { useNavigate } from 'react-router-dom';
 
@@ -26,7 +26,7 @@ const CreateMenu = () => {
 
     // console.log(formData.name, formData.description, formData.type, formData.imageUrl, formData.price)
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
 
         // cara rubah nilai dari string ke number
         formData.price = Number(formData.price)
@@ -41,18 +41,16 @@ const CreateMenu = () => {
 
         setLoading(true)
 
-        axios
-            .post('https://api.mudoapi.tech/menu',  formData, config)
-            .then((res) => {
+            try {
+                const res = await requestAPI.createMenu(formData, config)
                 console.log(res);
                 navigate('/')
                 setLoading(false)
                 alert('Menu Berhasil Dibuat')
-            })
-            .catch((err) => {
-                console.log(err.response);
+            } catch (error) {
+                console.log(error)
                 setLoading(false)
-            });
+            }
     };
 
     return (
@@ -64,8 +62,9 @@ const CreateMenu = () => {
                 <input className='create-input' name='description' placeholder='description' onChange={handleInputChange}/>
                 <input className='create-input' name='imageUrl' placeholder='image url' onChange={handleInputChange}
                 />
-                <input className='create-input' name='price' placeholder='harga' onChange={handleInputChange}/>
+                <input type='number' className='create-input' name='price' placeholder='price' onChange={handleInputChange}/>
                 <select className='create-input' name='type' onChange={handleInputChange}>
+                    <option value="">type</option>
                     <option value={'beverage'}>beverage</option>
                     <option value={'main-dish'}>main-dish</option>
                 </select>

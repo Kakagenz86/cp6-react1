@@ -2,25 +2,25 @@ import React from 'react'
 import Navbar from '../../components/Navbar';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import * as requestAPI from '../../api/api'
 import './style.css'
 
 const DetailPages = () => {
-    let param = useParams()
+    let {id} = useParams()
     let [menu, setMenu] = useState({})
 
     useEffect(() => {
         handleGetDetail()
     }, [])
 
-    const handleGetDetail = () => {
-        axios
-        .get(`https://api.mudoapi.tech/menu/${param.id}`)
-        .then((res) => {
-            console.log(res)
-            setMenu(res.data.data);
-        })
-        .catch((err) => console.log(err))
+    const handleGetDetail = async () => {
+        try {
+            const res = await requestAPI.detail(id)
+            console.log(res);
+            setMenu(res.data.data)
+        } catch (error) {
+            console.log(error)
+        }
     }
     return ( 
         <div>

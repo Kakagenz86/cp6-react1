@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Navbar from '../../components/Navbar';
-import axios from 'axios';
+import * as requestAPI from '../../api/api'
 import { Link, useNavigate } from 'react-router-dom';
 import './style.css'
 
@@ -22,7 +22,7 @@ const FormLogin = () => {
         setLogin('')
     }
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         const bodyPayLoad = {
             username: name,
             password: password,
@@ -36,9 +36,8 @@ const FormLogin = () => {
 
         setLoading(true)
 
-        axios
-        .post(`https://api.mudoapi.tech/login`, bodyPayLoad)
-        .then((res) => {
+        try {
+            const res = await requestAPI.login(bodyPayLoad)
             console.log(res.data.data.token)
             localStorage.setItem("accessToken", res.data.data.token)
             
@@ -48,12 +47,11 @@ const FormLogin = () => {
             setTimeout(() => {
                 navigate('/')
             }, 1000);
-        })
-        .catch((err) => {
-            console.log(err.response)
+        } catch (error) {
+            console.log(error)
             setLoading(false)
             setLogin(err.response.data.message)
-        })
+        }
     }
 
     return ( 
@@ -69,7 +67,7 @@ const FormLogin = () => {
                     <label>Password: </label>
                     <input onChange={handlePassword} type="text" name="" id="" />
                 </div>
-                <Link className='btn-login' onClick={handleSubmit} disabled={loading}>{loading ? 'Loading...' : 'Submit'}</Link>
+                <Link className='btn-login' onClick={handleSubmit} disabled={loading}>{loading ? 'Loading...' : 'Login'}</Link>
             </div>
         </div>
     );

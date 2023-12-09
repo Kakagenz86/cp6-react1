@@ -1,26 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import Navbar from '../../components/Navbar';
 import './style.css'
+import * as requestAPI from '../../api/api'
 
 const Home = () => {
     const [menus, setMenus] = useState([]);
+    const [name, setName] = useState('');
+    const [type, setType] = useState('');
     const [paging, setPaging] = useState ({
         currentPage: 1,
         previousPage: 0,
         nextPage: 2
     })
-    // const [currentPage, setCurrentPage] = useState(1);
 
     useEffect(() => {
         handleGetMenu();
     }, [paging.currentPage]);
 
-    const handleGetMenu = () => {
-        axios
-        .get(`https://api.mudoapi.tech/menus?name=&type=&perPage=10&page=${paging.currentPage}`)
-        .then((res) => {
+
+    const handleGetMenu = async () => {
+        try {
+            const res = await requestAPI.homeMenu(paging.currentPage, name, type)
             console.log(res)
             setMenus(res.data.data.Data);
             setPaging({
@@ -28,25 +29,26 @@ const Home = () => {
                 previousPage: res.data.data.previousPage,
                 nextPage: res.data.data.nextPage
             })
-        })
-        .catch((err) => console.log(err));
-    };
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
-    const handleDelete = (id) => {
+    const handleDelete = async (id) => {
         const token = localStorage.getItem('accessToken');
         const config = {
-        headers: {
-            Authorization: `Bearer ${token}`,
-        },
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
         };
-
-        axios
-        .delete(`https://api.mudoapi.tech/menu/${id}`, config)
-        .then(() => {
-            console.log(res)
+    
+        try {
+            const res = await requestAPI.deleteMenu(id, config);
+            console.log(res);
             handleGetMenu();
-        })
-        .catch((err) => console.log(err));
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     const handleBack = () => {
@@ -63,9 +65,24 @@ const Home = () => {
         })
     };
 
+    const searchName = (e) => {
+        setName(e.target.value);
+    };
+
+    const searchType = (e) => {
+        setType(e.target.value);
+    };
+
+    const handleSubmit = () => {
+        handleGetMenu();
+        setName('')
+        setType('')
+    };
+
     return (
         <div>
             <Navbar />
+
         <Link className='home-create' to="/menu">Create Menu</Link>
             <div className='home'>
             <h1>Page {paging.currentPage}</h1>
@@ -77,6 +94,11 @@ const Home = () => {
                     Next
                     </button>
                 </div> 
+                <div>
+                    <input onChange={searchName} value={name} className="rectangle-text" type="text" placeholder="Cari Menu"/>
+                    <input onChange={searchType} value={type} className="rectangle-text" type="text" placeholder="Type Menu"/>
+                    <button className="rectangle-search" onClick={handleSubmit}>Search</button>
+                </div>
                 {menus.map((menu) => (
                     <div key={menu.id}>
                     <h3>{menu.name}</h3>
