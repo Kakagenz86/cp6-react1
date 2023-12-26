@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Navbar from '../../components/Navbar';
 import * as requestAPI from '../../api/api'
 import './style.css'
@@ -31,7 +31,7 @@ const CreateMenu = () => {
         // cara rubah nilai dari string ke number
         formData.price = Number(formData.price)
         
-        // buat config untuk authorization dan valeu berupa token
+        // buat config untuk authorization dan value berupa token
         const token = localStorage.getItem("accessToken")
         const config = {
             headers: {

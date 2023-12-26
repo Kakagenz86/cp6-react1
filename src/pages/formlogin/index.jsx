@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Navbar from '../../components/Navbar';
 import * as requestAPI from '../../api/api'
 import { Link, useNavigate } from 'react-router-dom';
@@ -50,7 +50,7 @@ const FormLogin = () => {
         } catch (error) {
             console.log(error)
             setLoading(false)
-            setLogin(err.response.data.message)
+            setLogin(error.response.data.message)
         }
     }
 

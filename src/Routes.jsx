@@ -1,4 +1,3 @@
-import React from 'react'
 import Home from "./pages/home"
 import FormLogin from "./pages/formlogin"
 import DetailPages from "./pages/detail"
@@ -10,9 +9,7 @@ import ProtectedRoute from './hoc/protectedroute'
 export const Routes = [{
     path: "/",
     element: 
-    <ProtectedRoute>
         <Home/>
-    </ProtectedRoute>
     },
     {
     path: "/login",
@@ -24,15 +21,21 @@ export const Routes = [{
     {
     path: "/menu",
     element:
+        <ProtectedRoute>
         <CreateMenu/>
+        </ProtectedRoute>
     }, 
     {
     path: "/detail/:id",
     element: 
+        <ProtectedRoute>
         <DetailPages/>
+        </ProtectedRoute>
     },
     {
     path: '/form/:id',
     element: 
-        <FormEdit/>
+        <ProtectedRoute>
+            <FormEdit/>
+        </ProtectedRoute>
     }]
