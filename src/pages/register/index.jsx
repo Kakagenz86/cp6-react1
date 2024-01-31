@@ -3,11 +3,12 @@ import * as requestAPI from '../../api/api'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../../components/Navbar';
+import { Link } from 'react-router-dom';
 import Footer from '../../components/footer';
 
 const Register = () => {
     const [loading, setLoading] = useState(false)
-    const [register, setRegister] = useState('')
+    const [signup, setSignup] = useState('')
     const [form, setForm] = useState({
         name: "",
         username: "",
@@ -34,9 +35,9 @@ const Register = () => {
                 throw new Error("Username and password are required.");
             }
 
-            const res = await requestAPI.register(form)
+            const res = await requestAPI.signup(form)
             console.log(res)
-            setRegister(res.data.message)
+            setSignup(res.data.message)
 
             setLoading(false)
 
@@ -53,7 +54,7 @@ const Register = () => {
             <Navbar/>
             <div className='register d-flex flex-column align-items-center'>
                 <div>
-                    {register.length ? (<h3>{register}</h3>) : null}
+                    {signup.length ? (<h3>{signup}</h3>) : null}
                     <div>
                         <h1 className='mt-4 fs-4 fw-bolder'>Register</h1>
                         <p className='label-signup'>Name*</p>
@@ -73,7 +74,7 @@ const Register = () => {
                     </div>
                 </div>
                     <button className='btn-signup' onClick={handleRegister} disabled={loading}>{loading ? 'Loading...' : 'Register'}</button>
-                    <p className='mt-4 text-center'>Already have an account? <a className='fw-bold' href="/login">Login In here</a></p>
+                    <p className='mt-4 text-center'>Already have an account? <Link className='fw-bold' to="/login">Signin In here</Link></p>
             </div>
             <Footer/>
     </div>

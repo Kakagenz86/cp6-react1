@@ -1,6 +1,6 @@
 import Home from "./pages/home"
-import Register from "./pages/formregister"
-import FormLogin from "./pages/formlogin"
+import Register from "./pages/register"
+import Login from "./pages/login"
 import DetailPages from "./pages/detail"
 import CreateMenu from './pages/CreateMenu'
 import FormEdit from './pages/FormEdit'
@@ -21,7 +21,7 @@ export const Routes = [{
     path: "/login",
     element: 
         // <ProtectedLogin>
-            <FormLogin/>
+            <Login/>
         // </ProtectedLogin>
     },
     {
