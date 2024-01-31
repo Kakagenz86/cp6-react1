@@ -3,6 +3,7 @@ import Navbar from '../../components/Navbar';
 import * as requestAPI from '../../api/api'
 import { Link, useNavigate } from 'react-router-dom';
 import './style.css'
+import Footer from '../../components/footer';
 
 const FormLogin = () => {
     const [name, setUsername] = useState ('')
@@ -60,15 +61,18 @@ const FormLogin = () => {
             <div className="loginpages">
                 {login.length ? (<h1>{login}</h1>) : null}
                 <div>
-                    <label>Username: </label>
-                    <input onChange={handleUsername} type="text" />
+                    <h1 className='mt-4 fs-4 fw-bolder'>Login</h1>
+                    <p className='label-login'>Username*</p>
+                    <input className='input-login' placeholder='Username' type="text" onChange={handleUsername} />
                 </div>
                 <div>
-                    <label>Password: </label>
-                    <input onChange={handlePassword} type="text" name="" id="" />
+                    <p className='label-login'>Password*</p>
+                    <input className='input-login' placeholder='6+ karakter' type="password" onChange={handlePassword} />
                 </div>
                 <Link className='btn-login' onClick={handleSubmit} disabled={loading}>{loading ? 'Loading...' : 'Login'}</Link>
+            <p className='mt-4 text-center'>Don`t have an account? <a className='fw-bold' href="/register">Register for free</a></p>
             </div>
+            <Footer/>
         </div>
     );
 }

@@ -5,6 +5,11 @@ export async function homeMenu(param, name, type) {
         return response
 }
 
+export async function register(form) {
+    const response = await axios.post(`https://api.mudoapi.tech/register`, form)
+    return response
+}
+
 export async function login(bodyPayLoad) {
     const response = await axios.post(`https://api.mudoapi.tech/login`, bodyPayLoad)
     return response
@@ -29,8 +34,3 @@ export async function editMenu(id, formData, config) {
     const response = await axios.put(`https://api.mudoapi.tech/menu/${id}`, formData, config)
     return response
 }
-    
-// export async function register(param) {
-//     const response = await axios.post(`https://api.mudoapi.tech/register`, param)
-//     return response
-// }

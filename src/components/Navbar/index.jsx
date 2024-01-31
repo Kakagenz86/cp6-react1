@@ -13,7 +13,7 @@ const Navbar = () => {
     }
 
     return ( 
-            <div className="container">
+            <div className="container-fluid">
                 <ul className='nav-link-wrapper'>
                     <Link className='nav-link' to={"/"}>Home</Link>
                     {accessToken ? (

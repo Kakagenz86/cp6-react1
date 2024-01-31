@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import './style.css'
 import Navbar from '../../components/Navbar';
 import * as requestAPI from '../../api/api'
+import Footer from '../../components/footer';
 
 const FormEdit = () => {
     const [formData, setFormData] = useState({
@@ -91,6 +92,7 @@ const FormEdit = () => {
                     <button className='edit-btn' onClick={handleEdit} disabled={loading}>{loading ? 'Loading...' : 'Edit'}</button>
                 </div>
             </div>
+            <Footer/>
         </div>
     );
 };

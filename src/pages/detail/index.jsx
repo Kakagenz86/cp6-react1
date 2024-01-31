@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import * as requestAPI from '../../api/api'
 import './style.css'
+import Footer from '../../components/footer';
 
 const DetailPages = () => {
     let {id} = useParams()
@@ -36,6 +37,7 @@ const DetailPages = () => {
                     </div>
                 </div>
             </div>
+            <Footer/>
         </div>
     );
 }

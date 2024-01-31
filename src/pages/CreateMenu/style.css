@@ -2,9 +2,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 93vh;
     flex-direction: column;
-    gap: 10px;
+    height: 87vh;
+    gap: 20px;
 }
 
 .create-title {
@@ -16,7 +16,7 @@
 .create-input {
     width: 300px;
     padding: 5px;
-    height: 30px;
+    height: 40px;
     border-radius: 5px;
     color: black;
 }

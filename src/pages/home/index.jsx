@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Navbar from '../../components/Navbar';
 import './style.css'
 import * as requestAPI from '../../api/api'
+import Footer from '../../components/footer';
 
 const Home = () => {
     const [menus, setMenus] = useState([]);
@@ -82,8 +83,6 @@ const Home = () => {
     return (
         <div>
             <Navbar />
-
-        <Link className='home-create' to="/menu">Create Menu</Link>
             <div className='home'>
             <h1>Page {paging.currentPage}</h1>
                 <div>
@@ -94,22 +93,25 @@ const Home = () => {
                     Next
                     </button>
                 </div> 
-                <div>
-                    <input onChange={searchName} value={name} className="rectangle-text" type="text" placeholder="Cari Menu"/>
-                    <input onChange={searchType} value={type} className="rectangle-text" type="text" placeholder="Type Menu"/>
-                    <button className="rectangle-search" onClick={handleSubmit}>Search</button>
+                    <Link className='home-create' to="/menu">Create Menu</Link>
+                <div className='d-flex flex-column gap-3 mt-3 mb-5'>
+                    <input onChange={searchName} value={name} className="filter-home" type="text" placeholder="Cari Menu"/>
+                    <input onChange={searchType} value={type} className="filter-home" type="text" placeholder="main-dish / beverage"/>
+                    <button className="home-btn-search" onClick={handleSubmit}>Search</button>
                 </div>
-                {menus.map((menu) => (
-                    <div key={menu.id}>
-                    <h3>{menu.name}</h3>
-                    <img src={menu.imageUrl} alt={menu.name} style={{ width: '200px' }} />
-                        <div className='home-btn'>              
-                            <Link className='home-link' to={`/detail/${menu.id}`}>Detail</Link>
-                            <Link className='home-link' onClick={() => handleDelete(menu.id)}>Delete</Link>
-                            <Link className='home-link' to={`/form/${menu.id}`}>Edit</Link>
+                <div className='wrapper-menu-home'>
+                    {menus.map((menu) => (
+                        <div key={menu.id} className='card-menu'>
+                            <h5 className='p-3 text-center'>{menu.name}</h5>
+                            <img src={menu.imageUrl} alt={menu.name} style={{ width: '220px', height: '150px' }} />
+                            <div className='home-btn'>              
+                                <Link className='home-link' to={`/detail/${menu.id}`}>Detail</Link>
+                                <Link className='home-link' onClick={() => handleDelete(menu.id)}>Delete</Link>
+                                <Link className='home-link' to={`/form/${menu.id}`}>Edit</Link>
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    ))}
+                </div>
                 <div>
                     <button className='home-back' onClick={handleBack} disabled={!paging.previousPage}>
                     Back
@@ -119,6 +121,7 @@ const Home = () => {
                     </button>
                 </div> 
             </div>
+            <Footer/>
         </div>
     );
 };

@@ -3,6 +3,7 @@ import Navbar from '../../components/Navbar';
 import * as requestAPI from '../../api/api'
 import './style.css'
 import { useNavigate } from 'react-router-dom';
+import Footer from '../../components/footer';
 
 const CreateMenu = () => {
     const [formData, setFormData] = useState({
@@ -72,6 +73,7 @@ const CreateMenu = () => {
                     <button className='create-btn' onClick={handleSubmit} disabled={loading}>{loading ? 'Loading...' : 'Create'}</button>
                 </div>
             </div>
+            <Footer/>
         </div>
     );
 };

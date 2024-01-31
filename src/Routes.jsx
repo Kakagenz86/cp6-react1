@@ -1,4 +1,5 @@
 import Home from "./pages/home"
+import Register from "./pages/formregister"
 import FormLogin from "./pages/formlogin"
 import DetailPages from "./pages/detail"
 import CreateMenu from './pages/CreateMenu'
@@ -12,6 +13,13 @@ export const Routes = [{
         <Home/>
     },
     {
+    path: "/register",
+    element: 
+        // <ProtectedRoute>
+        <Register/>
+        // </ProtectedRoute>
+    },
+    {
     path: "/login",
     element: 
     // <ProtectedLogin>
@@ -21,21 +29,21 @@ export const Routes = [{
     {
     path: "/menu",
     element:
-        <ProtectedRoute>
+        // <ProtectedRoute>
         <CreateMenu/>
-        </ProtectedRoute>
+        // </ProtectedRoute>
     }, 
     {
     path: "/detail/:id",
     element: 
-        <ProtectedRoute>
+        // <ProtectedRoute>
         <DetailPages/>
-        </ProtectedRoute>
+        // </ProtectedRoute>
     },
     {
     path: '/form/:id',
     element: 
-        <ProtectedRoute>
+        // <ProtectedRoute>
             <FormEdit/>
-        </ProtectedRoute>
+        // </ProtectedRoute>
     }]

@@ -1,9 +1,19 @@
 .home {
-    width: 500px;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: auto;
+}
+
+.wrapper-menu-home {
+    display: flex;
+    margin-bottom: 50px;
+    gap: 20px;
+}
+
+.card-menu {
+    border-radius: 5px;
+    border: 1px solid black;
 }
 
 .home-create {
@@ -13,9 +23,6 @@
     border: 1px solid black;
     padding: 10px;
     border-radius: 5px;
-    position: absolute;
-    top: 200px;
-    left: 100px;
 }
 
 .home-back, .home-next {
@@ -29,9 +36,8 @@
 .home-btn {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
-    margin-bottom: 15px;
-    margin-top: 5px;
+    justify-content: space-between;
+    padding: 20px;
 }
 
 .home-link {
@@ -45,4 +51,30 @@
     justify-content: center;
     align-items: center;
     display: flex;
+}
+
+.filter-home {
+    width: 220px;
+    height: 35px;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.home-btn-search {
+    width: 100px;
+    height: 35px;
+    border-radius: 10px;
+    margin: auto;
+    color: white;
+    font-weight: 700;
+    background-color: crimson;
+    box-shadow: 3px 3px rgba(0, 0, 0, 1);
+}
+
+
+@media (max-width: 576px) {
+    .wrapper-menu-home {
+        display: flex;
+        flex-direction: column;
+    }
 }
