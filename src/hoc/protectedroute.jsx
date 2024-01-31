@@ -4,7 +4,7 @@ const ProtectedRoute = (props) => {
     const token = localStorage.getItem('accessToken')
 
     if(!token)
-        return <Navigate to="/login" />
+        return <Navigate to="/register" />
 
     return props.children
 }
