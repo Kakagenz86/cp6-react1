@@ -15,35 +15,33 @@ export const Routes = [{
     {
     path: "/register",
     element: 
-        // <ProtectedRoute>
-        <Register/>
-        // </ProtectedRoute>
+            <Register/>
     },
     {
     path: "/login",
     element: 
-    // <ProtectedLogin>
-        <FormLogin/>
-    // </ProtectedLogin>
+        // <ProtectedLogin>
+            <FormLogin/>
+        // </ProtectedLogin>
     },
     {
     path: "/menu",
     element:
-        // <ProtectedRoute>
-        <CreateMenu/>
-        // </ProtectedRoute>
+        <ProtectedRoute>
+            <CreateMenu/>
+        </ProtectedRoute>
     }, 
     {
     path: "/detail/:id",
     element: 
-        // <ProtectedRoute>
-        <DetailPages/>
-        // </ProtectedRoute>
+        <ProtectedRoute>
+            <DetailPages/>
+        </ProtectedRoute>
     },
     {
     path: '/form/:id',
     element: 
-        // <ProtectedRoute>
+        <ProtectedRoute>
             <FormEdit/>
-        // </ProtectedRoute>
+        </ProtectedRoute>
     }]
